@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Design tokens — sumber tunggal untuk seluruh palet & skala visual.
+   Ubah di sini, efeknya menyebar ke seluruh aplikasi lewat Tailwind utility.
+   ========================================================================== */
+:root {
+  /* Warna inti (light mode — satu-satunya mode untuk tahap ini) */
+  --background: #f7f6f2; /* latar halaman: paper, hangat, bukan putih polos */
+  --surface: #ffffff; /* latar kartu/panel: sedikit lebih terang dari background */
+  --foreground: #191b1f; /* teks utama: near-black, bukan hitam pekat */
+  --muted: #6b6e76; /* teks sekunder/caption/metadata */
+  --accent: #2247d0; /* aksi utama, tautan, fokus — "blueprint blue" */
+  --accent-foreground: #f7f6f2; /* teks di atas permukaan --accent */
+  --border: #dedcd3; /* garis pembatas tipis, hairline */
+
+  /* Radius dasar (sudut tajam-terkontrol, bukan rounded-2xl generik) */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.625rem;
+
+  /* Ritme vertikal antar section, fluid mengikuti lebar viewport */
+  --space-section-y: clamp(3rem, 2rem + 4vw, 6rem);
+}
+
+/* ==========================================================================
+   Jembatan token → Tailwind utility (Tailwind v4, CSS-first config).
+   Setelah ini tersedia: bg-background, text-foreground, text-muted,
+   bg-surface, border-border, bg-accent, text-accent, font-display,
+   font-body, font-mono, text-3xl/4xl/5xl (fluid), dst.
+   ========================================================================== */
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+
+  --font-display: var(--font-space-grotesk), ui-sans-serif, sans-serif;
+  --font-body: var(--font-ibm-plex-sans), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
+
+  /* Ukuran headline besar dibuat fluid — skala kecil/menengah memakai
+     default Tailwind agar teks isi tetap konsisten & mudah diprediksi. */
+  --text-3xl: clamp(1.75rem, 1.4rem + 1.5vw, 2.25rem);
+  --text-4xl: clamp(2.125rem, 1.6rem + 2.2vw, 2.875rem);
+  --text-5xl: clamp(2.5rem, 1.8rem + 3.2vw, 3.75rem);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+
+  /* Breakpoint tambahan untuk layar sangat kecil (default Tailwind mulai dari sm/40rem) */
+  --breakpoint-xs: 30rem;
+}
+
+/* ==========================================================================
+   Base styles
+   ========================================================================== */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+
+  p {
+    max-width: 65ch;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-accent-foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+/* Hormati preferensi pengguna yang mengurangi motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
