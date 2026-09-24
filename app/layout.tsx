@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Fraunces, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Navbar } from "@/components/layout/Navbar";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600"],
+  variable: "--font-fraunces",
   display: "swap",
 });
 
@@ -36,8 +39,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${spaceGrotesk.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable}`}>
-      <body>{children}</body>
+    <html lang="id" className={`${fraunces.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable}`}>
+      <body>
+        <Navbar />
+        <main className="pt-(--nav-h)">{children}</main>
+      </body>
     </html>
   );
 }

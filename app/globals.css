@@ -5,22 +5,32 @@
    Ubah di sini, efeknya menyebar ke seluruh aplikasi lewat Tailwind utility.
    ========================================================================== */
 :root {
-  /* Warna inti (light mode — satu-satunya mode untuk tahap ini) */
-  --background: #f7f6f2; /* latar halaman: paper, hangat, bukan putih polos */
-  --surface: #ffffff; /* latar kartu/panel: sedikit lebih terang dari background */
-  --foreground: #191b1f; /* teks utama: near-black, bukan hitam pekat */
-  --muted: #6b6e76; /* teks sekunder/caption/metadata */
-  --accent: #2247d0; /* aksi utama, tautan, fokus — "blueprint blue" */
-  --accent-foreground: #f7f6f2; /* teks di atas permukaan --accent */
-  --border: #dedcd3; /* garis pembatas tipis, hairline */
+  /* Warna inti — disamakan dengan dokumen art direction (light mode saja untuk tahap ini) */
+  --background: #f6f5f1; /* latar halaman: paper, hangat, bukan putih polos */
+  --surface: #fcfbf8; /* latar kartu/panel: sedikit lebih terang dari background */
+  --foreground: #15161b; /* teks utama: near-black, bukan hitam pekat */
+  --muted: #6e6f76; /* teks sekunder/caption/metadata */
+  --accent: #2645f5; /* satu-satunya aksen kuat: tautan aktif, CTA, fokus */
+  --accent-ink: #0f1f99; /* accent state hover/pressed — lebih gelap, bukan lebih terang */
+  --accent-foreground: #ffffff; /* teks di atas permukaan --accent */
+  --border: #e4e1d8; /* garis pembatas tipis, hairline */
 
-  /* Radius dasar (sudut tajam-terkontrol, bukan rounded-2xl generik) */
+  /* Radius dasar (moderat — bukan rounded-2xl generik, bukan juga 0 di semua sisi) */
   --radius-sm: 0.25rem;
-  --radius-md: 0.375rem;
-  --radius-lg: 0.625rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
 
   /* Ritme vertikal antar section, fluid mengikuti lebar viewport */
   --space-section-y: clamp(3rem, 2rem + 4vw, 6rem);
+
+  /* Tinggi navbar fixed — konstan di semua state scroll agar tidak ada layout shift */
+  --nav-h: 4.5rem;
+}
+
+@media (max-width: 40rem) {
+  :root {
+    --nav-h: 3.75rem;
+  }
 }
 
 /* ==========================================================================
@@ -35,10 +45,11 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
   --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);
 
-  --font-display: var(--font-space-grotesk), ui-sans-serif, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
   --font-body: var(--font-ibm-plex-sans), ui-sans-serif, sans-serif;
   --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
 
