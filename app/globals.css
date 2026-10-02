@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-/* ==========================================================================
-   Design tokens — sumber tunggal untuk seluruh palet & skala visual.
-   Ubah di sini, efeknya menyebar ke seluruh aplikasi lewat Tailwind utility.
-   ========================================================================== */
 :root {
   /* Warna inti — disamakan dengan dokumen art direction (light mode saja untuk tahap ini) */
   --background: #f6f5f1; /* latar halaman: paper, hangat, bukan putih polos */
@@ -15,15 +11,12 @@
   --accent-foreground: #ffffff; /* teks di atas permukaan --accent */
   --border: #e4e1d8; /* garis pembatas tipis, hairline */
 
-  /* Radius dasar (moderat — bukan rounded-2xl generik, bukan juga 0 di semua sisi) */
   --radius-sm: 0.25rem;
   --radius-md: 0.625rem;
   --radius-lg: 1rem;
 
-  /* Ritme vertikal antar section, fluid mengikuti lebar viewport */
   --space-section-y: clamp(3rem, 2rem + 4vw, 6rem);
 
-  /* Tinggi navbar fixed — konstan di semua state scroll agar tidak ada layout shift */
   --nav-h: 4.5rem;
 }
 
@@ -33,12 +26,6 @@
   }
 }
 
-/* ==========================================================================
-   Jembatan token → Tailwind utility (Tailwind v4, CSS-first config).
-   Setelah ini tersedia: bg-background, text-foreground, text-muted,
-   bg-surface, border-border, bg-accent, text-accent, font-display,
-   font-body, font-mono, text-3xl/4xl/5xl (fluid), dst.
-   ========================================================================== */
 @theme inline {
   --color-background: var(--background);
   --color-surface: var(--surface);
@@ -53,8 +40,6 @@
   --font-body: var(--font-ibm-plex-sans), ui-sans-serif, sans-serif;
   --font-mono: var(--font-ibm-plex-mono), ui-monospace, monospace;
 
-  /* Ukuran headline besar dibuat fluid — skala kecil/menengah memakai
-     default Tailwind agar teks isi tetap konsisten & mudah diprediksi. */
   --text-3xl: clamp(1.75rem, 1.4rem + 1.5vw, 2.25rem);
   --text-4xl: clamp(2.125rem, 1.6rem + 2.2vw, 2.875rem);
   --text-5xl: clamp(2.5rem, 1.8rem + 3.2vw, 3.75rem);
@@ -63,13 +48,9 @@
   --radius-md: var(--radius-md);
   --radius-lg: var(--radius-lg);
 
-  /* Breakpoint tambahan untuk layar sangat kecil (default Tailwind mulai dari sm/40rem) */
   --breakpoint-xs: 30rem;
 }
 
-/* ==========================================================================
-   Base styles
-   ========================================================================== */
 @layer base {
   * {
     border-color: var(--color-border);
@@ -111,7 +92,6 @@
   }
 }
 
-/* Hormati preferensi pengguna yang mengurangi motion */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -123,8 +103,6 @@
   }
 }
 
-/* Entrance animation tipis — dipakai terbatas (mis. Hero), bukan di semua elemen.
-   Hanya opacity + transform, sekali jalan saat halaman dimuat. */
 @layer utilities {
   @keyframes fade-up {
     from {
@@ -140,4 +118,38 @@
   .animate-fade-up {
     animation: fade-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   }
+}
+
+.reveal-step {
+  opacity: 1;
+}
+
+@supports (animation-timeline: view()) {
+  @keyframes reveal-step-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .reveal-step {
+      animation: reveal-step-in linear both;
+      animation-timeline: view(inline);
+      animation-range: entry 10% entry 60%;
+    }
+  }
+}
+
+.tech-list:hover .tech-item {
+  opacity: 0.35;
+}
+.tech-list:hover .tech-item:hover {
+  opacity: 1;
+  color: var(--accent);
+  transform: translateY(-0.05em);
 }
