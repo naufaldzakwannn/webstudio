@@ -5,6 +5,7 @@ import { Portfolio } from "@/components/sections/Portfolio";
 import { Process } from "@/components/sections/Process";
 import { Technology } from "@/components/sections/Technology";
 import { Testimonials } from "@/components/sections/Testimonials";
+import { CTA } from "@/components/sections/CTA";
 
 export default function HomePage() {
   return (
@@ -16,6 +17,7 @@ export default function HomePage() {
       <Process />
       <Technology />
       <Testimonials />
+      <CTA />
     </>
   );
 }
