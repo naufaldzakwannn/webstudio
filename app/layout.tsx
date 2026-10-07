@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -43,6 +44,7 @@ export default function RootLayout({
       <body>
         <Navbar />
         <main className="pt-(--nav-h)">{children}</main>
+        <Footer />
       </body>
     </html>
   );
