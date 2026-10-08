@@ -8,17 +8,11 @@ const tierStyles = {
   3: "text-[clamp(1.125rem,0.95rem+0.8vw,1.5rem)]",
 } as const;
 
-/**
- * Technology — daftar berbasis tipografi, bukan grid logo.
- * Server Component murni; "emphasis on hover" dicapai lewat CSS
- * descendant selector di globals.css (.tech-list / .tech-item),
- * tanpa JavaScript maupun icon library.
- */
 export function Technology() {
   return (
     <section className="py-24 md:py-36">
       <Container>
-        <div className="grid grid-cols-1 gap-y-6 md:grid-cols-12 md:gap-x-6">
+        <div className="reveal grid grid-cols-1 gap-y-6 md:grid-cols-12 md:gap-x-6">
           <p className="font-mono text-xs text-muted md:col-span-3">Tech stack</p>
           <p className="font-display text-xl italic text-foreground md:col-span-6 md:col-start-4">Tools change. Good engineering doesn&apos;t.</p>
         </div>

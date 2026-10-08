@@ -12,7 +12,7 @@ export function CTA() {
         </div>
         <div className="mt-6 h-px w-full bg-border" aria-hidden="true" />
 
-        <h2 className="mt-12 font-display text-[clamp(2.5rem,1.6rem+4.5vw,5.5rem)] leading-[1.03] text-foreground md:mt-16">
+        <h2 className="reveal mt-12 font-display text-[clamp(2.5rem,1.6rem+4.5vw,5.5rem)] leading-[1.03] text-foreground md:mt-16">
           <span className="italic">Punya sesuatu</span>
           <br />
           yang layak dibangun?

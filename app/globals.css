@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 :root {
-  /* Warna inti — disamakan dengan dokumen art direction (light mode saja untuk tahap ini) */
   --background: #f6f5f1; /* latar halaman: paper, hangat, bukan putih polos */
   --surface: #fcfbf8; /* latar kartu/panel: sedikit lebih terang dari background */
   --foreground: #15161b; /* teks utama: near-black, bukan hitam pekat */
@@ -120,12 +119,13 @@
   }
 }
 
+.reveal,
 .reveal-step {
   opacity: 1;
 }
 
 @supports (animation-timeline: view()) {
-  @keyframes reveal-step-in {
+  @keyframes reveal-in {
     from {
       opacity: 0;
       transform: translateY(18px);
@@ -136,9 +136,17 @@
     }
   }
 
-  @media (min-width: 48rem) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view(block);
+      animation-range: entry 0% entry 35%;
+    }
+  }
+
+  @media (min-width: 48rem) and (prefers-reduced-motion: no-preference) {
     .reveal-step {
-      animation: reveal-step-in linear both;
+      animation: reveal-in linear both;
       animation-timeline: view(inline);
       animation-range: entry 10% entry 60%;
     }

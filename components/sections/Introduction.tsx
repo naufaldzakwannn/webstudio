@@ -5,7 +5,7 @@ export function Introduction() {
   return (
     <section className="py-24 md:py-36">
       <Container>
-        <div className="grid grid-cols-1 gap-y-14 md:grid-cols-12 md:gap-x-6">
+        <div className="reveal grid grid-cols-1 gap-y-14 md:grid-cols-12 md:gap-x-6">
           <p className="font-mono text-xs text-muted md:col-start-2 md:col-span-3">Studio kami</p>
 
           <h2 className="mt-3 font-display text-[clamp(2rem,1.4rem+2.2vw,3.5rem)] leading-[1.08] text-foreground md:col-start-2 md:col-span-8 md:mt-4">
@@ -17,7 +17,6 @@ export function Introduction() {
             cepat, bukan cuma tampilan yang indah.
           </p>
 
-          {/* Daftar fakta — tipis, tekstual, bukan stat card besar */}
           <ul className="flex flex-col divide-y divide-border border-t border-border md:col-start-9 md:col-span-4 md:row-start-1 md:row-span-3 md:self-end">
             {studioFacts.map((fact) => (
               <li key={fact.label} className="flex items-baseline justify-between gap-4 py-4 md:py-5">
