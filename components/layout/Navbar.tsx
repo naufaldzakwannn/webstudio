@@ -68,9 +68,7 @@ export function Navbar() {
       }
       if (e.key !== "Tab" || !panelRef.current) return;
 
-      const focusables = panelRef.current.querySelectorAll<HTMLElement>(
-        'a[href], button:not([disabled])',
-      );
+      const focusables = panelRef.current.querySelectorAll<HTMLElement>("a[href], button:not([disabled])");
       if (focusables.length === 0) return;
 
       const first = focusables[0];
@@ -94,17 +92,12 @@ export function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 h-(--nav-h)",
         "transition-[background-color,border-color] duration-300 ease-out",
-        scrolled
-          ? "border-b border-border bg-background/90 backdrop-blur-sm"
-          : "border-b border-transparent bg-transparent",
+        scrolled ? "border-b border-border bg-background/90 backdrop-blur-sm" : "border-b border-transparent bg-transparent",
       )}
     >
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand — wordmark serif italic, tanpa kotak/badge */}
-        <Link
-          href="/"
-          className="font-display text-lg italic text-foreground transition-opacity duration-200 hover:opacity-70"
-        >
+        <Link href="/" className="font-display text-lg italic text-foreground transition-opacity duration-200 hover:opacity-70">
           {siteConfig.name}
         </Link>
 
@@ -113,23 +106,9 @@ export function Navbar() {
           {navItems.map((item) => {
             const active = pathname === item.href;
             return (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={active ? "page" : undefined}
-                className={cn(
-                  "group relative py-1 text-sm text-foreground transition-colors duration-200",
-                  active && "text-accent",
-                )}
-              >
+              <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined} className={cn("group relative py-1 text-sm text-foreground transition-colors duration-200", active && "text-accent")}>
                 {item.label}
-                <span
-                  aria-hidden="true"
-                  className={cn(
-                    "absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100",
-                    active && "scale-x-100",
-                  )}
-                />
+                <span aria-hidden="true" className={cn("absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100", active && "scale-x-100")} />
               </Link>
             );
           })}
@@ -137,15 +116,9 @@ export function Navbar() {
 
         <div className="flex items-center gap-5">
           {/* CTA — tautan teks beraksen, bukan tombol solid besar */}
-          <Link
-            href="/contact"
-            className="group relative hidden py-1 text-sm font-medium text-accent md:inline-flex md:items-center"
-          >
+          <Link href="/contact" className="group relative hidden py-1 text-sm font-medium text-accent md:inline-flex md:items-center">
             Mulai Project
-            <span
-              aria-hidden="true"
-              className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-[0.35] bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100"
-            />
+            <span aria-hidden="true" className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-[0.35] bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100" />
           </Link>
 
           {/* Toggle mobile — dua garis → silang, murni CSS transform */}
@@ -156,21 +129,11 @@ export function Navbar() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? "Tutup menu" : "Buka menu"}
-            className="-mr-2 flex h-10 w-10 items-center justify-center md:hidden"
+            className="-mr-1.5 flex h-11 w-11 items-center justify-center md:hidden"
           >
             <span className="relative block h-3.5 w-5">
-              <span
-                className={cn(
-                  "absolute left-0 top-0 h-px w-full bg-foreground transition-transform duration-300 ease-out",
-                  open && "translate-y-[7px] rotate-45",
-                )}
-              />
-              <span
-                className={cn(
-                  "absolute left-0 bottom-0 h-px w-full bg-foreground transition-transform duration-300 ease-out",
-                  open && "-translate-y-[7px] -rotate-45",
-                )}
-              />
+              <span className={cn("absolute left-0 top-0 h-px w-full bg-foreground transition-transform duration-300 ease-out", open && "translate-y-[7px] rotate-45")} />
+              <span className={cn("absolute left-0 bottom-0 h-px w-full bg-foreground transition-transform duration-300 ease-out", open && "-translate-y-[7px] -rotate-45")} />
             </span>
           </button>
         </div>
@@ -202,10 +165,7 @@ export function Navbar() {
                 href={item.href}
                 ref={i === 0 ? firstLinkRef : undefined}
                 aria-current={active ? "page" : undefined}
-                className={cn(
-                  "border-b border-border py-5 font-display text-3xl italic text-foreground transition-colors duration-200",
-                  active && "text-accent",
-                )}
+                className={cn("border-b border-border py-5 font-display text-3xl italic text-foreground transition-colors duration-200", active && "text-accent")}
               >
                 {item.label}
               </Link>
@@ -213,10 +173,7 @@ export function Navbar() {
           })}
         </nav>
 
-        <Link
-          href="/contact"
-          className="mt-10 inline-flex items-center justify-center rounded-(--radius-md) bg-accent px-6 py-4 text-sm font-medium text-accent-foreground"
-        >
+        <Link href="/contact" className="mt-10 flex w-full items-center justify-center rounded-(--radius-md) bg-accent px-6 py-4 text-sm font-medium text-accent-foreground">
           Mulai Project
         </Link>
       </div>
