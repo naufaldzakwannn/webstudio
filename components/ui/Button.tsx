@@ -8,8 +8,7 @@ const baseStyles =
 
 const variantStyles = {
   primary: "bg-accent text-accent-foreground hover:bg-accent/90",
-  secondary:
-    "border border-border bg-transparent text-foreground hover:border-accent hover:text-accent",
+  secondary: "border border-border bg-transparent text-foreground hover:border-accent hover:text-accent",
   ghost: "text-foreground hover:text-accent",
 } as const;
 
@@ -38,19 +37,7 @@ type ButtonAsButton = ButtonOwnProps &
 
 type ButtonProps = ButtonAsLink | ButtonAsButton;
 
-/**
- * Server Component murni — tidak menyimpan state apa pun.
- * Jika diberi `href`, dirender sebagai next/link (prefetch otomatis).
- * Jika tidak, dirender sebagai elemen <button> native.
- * Efek hover hanya CSS transform + transition, tanpa JS tambahan.
- */
-export function Button({
-  variant = "primary",
-  size = "md",
-  className,
-  children,
-  ...props
-}: ButtonProps) {
+export function Button({ variant = "primary", size = "md", className, children, ...props }: ButtonProps) {
   const classes = cn(baseStyles, variantStyles[variant], sizeStyles[size], className);
 
   if ("href" in props && props.href) {

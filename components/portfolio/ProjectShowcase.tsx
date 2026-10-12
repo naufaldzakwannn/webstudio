@@ -11,10 +11,7 @@ export type ProjectLayout = "left" | "right" | "full" | "flank";
  * baca di mobile & pembaca layar konsisten; desktop diatur ulang lewat
  * penempatan grid.
  */
-const layouts: Record<
-  ProjectLayout,
-  { media: string; eyebrow: string; title: string; details: string; titleSize: string; sizes: string }
-> = {
+const layouts: Record<ProjectLayout, { media: string; eyebrow: string; title: string; details: string; titleSize: string; sizes: string }> = {
   // Gambar landscape besar di kiri, metadata menyebar di kanan.
   left: {
     media: "md:col-span-7 md:col-start-1 md:row-span-3 md:row-start-1",
@@ -40,7 +37,7 @@ const layouts: Record<
     title: "md:col-span-5 md:col-start-4 md:row-start-2 md:mt-4",
     details: "md:col-span-4 md:col-start-9 md:row-start-2 md:mt-4",
     titleSize: "text-[clamp(2rem,1.4rem+2.6vw,3.75rem)]",
-    sizes: "(min-width: 1280px) 1216px, 100vw",
+    sizes: "(min-width: 1280px) 1216px, (min-width: 768px) calc(100vw - 4rem), 100vw",
   },
   // Judul besar di atas, gambar persegi di tengah, info mengapit di kiri & kanan.
   flank: {
@@ -88,10 +85,7 @@ export function ProjectShowcase({ project, number, layout = "left", className }:
             sizes={cfg.sizes}
             className="h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.02] group-has-[:focus-visible]:scale-[1.02]"
           />
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-foreground/0 transition-colors duration-500 group-hover:bg-foreground/10 group-has-[:focus-visible]:bg-foreground/10"
-          />
+          <span aria-hidden="true" className="pointer-events-none absolute inset-0 bg-foreground/0 transition-colors duration-500 group-hover:bg-foreground/10 group-has-[:focus-visible]:bg-foreground/10" />
           <span
             aria-hidden="true"
             className="absolute bottom-4 right-4 flex h-11 w-11 translate-y-2 items-center justify-center rounded-(--radius-md) bg-surface text-foreground opacity-0 transition-[opacity,transform] duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100 group-has-[:focus-visible]:translate-y-0 group-has-[:focus-visible]:opacity-100"
@@ -103,12 +97,7 @@ export function ProjectShowcase({ project, number, layout = "left", className }:
         </div>
 
         {/* Nomor, kategori, tahun */}
-        <p
-          className={cn(
-            "flex flex-wrap items-baseline gap-x-4 gap-y-1 font-mono text-xs text-muted",
-            cfg.eyebrow,
-          )}
-        >
+        <p className={cn("flex flex-wrap items-baseline gap-x-4 gap-y-1 font-mono text-xs text-muted", cfg.eyebrow)}>
           <span className="text-foreground">Project {number}</span>
           <span>{category}</span>
           <span>{year}</span>
@@ -117,9 +106,7 @@ export function ProjectShowcase({ project, number, layout = "left", className }:
         {/* Judul */}
         <h3 className={cn("font-display leading-[1.05] text-foreground", cfg.titleSize, cfg.title)}>
           <Link href={href} className="after:absolute after:inset-0 after:content-['']">
-            <span className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-2 group-active:translate-x-1 group-has-[:focus-visible]:translate-x-2">
-              {title}
-            </span>
+            <span className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-2 group-active:translate-x-1 group-has-[:focus-visible]:translate-x-2">{title}</span>
           </Link>
         </h3>
 
@@ -132,10 +119,7 @@ export function ProjectShowcase({ project, number, layout = "left", className }:
             ))}
           </ul>
           {/* Penanda visual saja — tautan sebenarnya adalah judul (stretched link) */}
-          <span
-            aria-hidden="true"
-            className="relative mt-5 inline-flex items-center text-sm font-medium text-foreground"
-          >
+          <span aria-hidden="true" className="relative mt-5 inline-flex items-center text-sm font-medium text-foreground">
             Lihat project
             <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-[0.4] bg-foreground transition-[transform,background-color] duration-300 ease-out group-hover:scale-x-100 group-hover:bg-accent group-has-[:focus-visible]:scale-x-100" />
           </span>

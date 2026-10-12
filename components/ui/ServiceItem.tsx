@@ -24,7 +24,6 @@ export function ServiceItem({ service, number, offset = 0, className }: ServiceI
   return (
     <li className={cn("group relative py-8 md:py-10", className)}>
       <div className="grid grid-cols-2 gap-y-5 md:grid-cols-12 md:items-center md:gap-x-6">
-        {/* Nomor — berganti gaya (mono abu → serif italic aksen) saat hover */}
         <div className="col-start-1 row-start-1 md:col-span-1">
           <span className="relative block h-8 w-10 overflow-hidden leading-none">
             <span className="absolute inset-0 flex items-center font-mono text-sm text-muted transition-transform duration-500 ease-out group-hover:-translate-y-full group-has-[:focus-visible]:-translate-y-full">{number}</span>
@@ -37,7 +36,6 @@ export function ServiceItem({ service, number, offset = 0, className }: ServiceI
           </span>
         </div>
 
-        {/* Judul */}
         <div className={cn("col-span-2 md:col-span-5 md:col-start-2 md:row-start-1", offsetStyles[offset])}>
           <h3 className={cn("font-display leading-[1.05] text-foreground", titleStyles[emphasis])}>
             <Link href={`/services#${slug}`} className="after:absolute after:inset-0 after:content-['']">
@@ -46,7 +44,6 @@ export function ServiceItem({ service, number, offset = 0, className }: ServiceI
           </h3>
         </div>
 
-        {/* Deskripsi + teknologi */}
         <div className="col-span-2 md:col-span-4 md:col-start-7 md:row-start-1">
           <p className="max-w-[44ch] text-sm text-muted transition-colors duration-500 group-hover:text-foreground group-has-[:focus-visible]:text-foreground">{description}</p>
           <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[0.7rem] text-muted">
@@ -56,7 +53,6 @@ export function ServiceItem({ service, number, offset = 0, className }: ServiceI
           </ul>
         </div>
 
-        {/* Indikator skala — memudar saat preview muncul di kolom yang sama */}
         <div className="col-start-2 row-start-1 justify-self-end md:col-span-2 md:col-start-11">
           <div className="flex flex-col items-end gap-2 transition-opacity duration-300 group-hover:opacity-0 group-has-[:focus-visible]:opacity-0">
             <span className="font-mono text-[0.7rem] text-muted">Skala</span>
@@ -69,7 +65,6 @@ export function ServiceItem({ service, number, offset = 0, className }: ServiceI
         </div>
       </div>
 
-      {/* Preview — hanya desktop; terungkap dengan clip-path + opacity + geser tipis */}
       <div
         aria-hidden="true"
         className={cn(

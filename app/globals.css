@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f5f1; /* latar halaman: paper, hangat, bukan putih polos */
-  --surface: #fcfbf8; /* latar kartu/panel: sedikit lebih terang dari background */
-  --foreground: #15161b; /* teks utama: near-black, bukan hitam pekat */
-  --muted: #6e6f76; /* teks sekunder/caption/metadata */
-  --accent: #2645f5; /* satu-satunya aksen kuat: tautan aktif, CTA, fokus */
-  --accent-ink: #0f1f99; /* accent state hover/pressed — lebih gelap, bukan lebih terang */
-  --accent-foreground: #ffffff; /* teks di atas permukaan --accent */
-  --border: #e4e1d8; /* garis pembatas tipis, hairline */
+  --background: #f6f5f1;
+  --surface: #fcfbf8;
+  --foreground: #15161b;
+  --muted: #6e6f76;
+  --accent: #2645f5;
+  --accent-ink: #0f1f99;
+  --accent-foreground: #ffffff;
+  --border: #e4e1d8;
 
   --radius-sm: 0.25rem;
   --radius-md: 0.625rem;
@@ -17,6 +17,21 @@
   --space-section-y: clamp(3rem, 2rem + 4vw, 6rem);
 
   --nav-h: 4.5rem;
+
+  --page-gutter: 1rem;
+  --bleed: calc((100vw - min(100vw, 80rem)) / 2 + var(--page-gutter));
+}
+
+@media (min-width: 40rem) {
+  :root {
+    --page-gutter: 1.5rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --page-gutter: 2rem;
+  }
 }
 
 @media (max-width: 40rem) {
@@ -116,6 +131,19 @@
 
   .animate-fade-up {
     animation: fade-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  @keyframes rise {
+    from {
+      transform: translateY(14px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .animate-rise {
+    animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   }
 }
 

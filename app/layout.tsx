@@ -7,7 +7,7 @@ import "./globals.css";
 const fraunces = Fraunces({
   subsets: ["latin"],
   style: ["normal", "italic"],
-  weight: ["400", "500", "600"],
+  weight: ["400"],
   variable: "--font-fraunces",
   display: "swap",
 });
@@ -21,9 +21,10 @@ const ibmPlexSans = IBM_Plex_Sans({
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400"],
   variable: "--font-ibm-plex-mono",
   display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
