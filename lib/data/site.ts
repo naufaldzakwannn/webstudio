@@ -1,8 +1,8 @@
 export const siteConfig = {
-  name: "Nama Studio",
+  name: "Up Tech",
   tagline: "Jasa pembuatan website untuk bisnis yang ingin tampil kredibel.",
-  email: "hello@namastudio.id",
-  url: "https://namastudio.id",
+  email: "Up Tech@gmail.com",
+  url: "https://uptech.id",
   location: "Jakarta, Indonesia",
 } as const;
 

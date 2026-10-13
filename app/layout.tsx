@@ -29,8 +29,8 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Nama Studio — Jasa Pembuatan Website",
-    template: "%s · Nama Studio",
+    default: "Up Tech",
+    template: "%s · Up Tech",
   },
   description: "Studio pengembangan website profesional: merancang dan membangun website untuk bisnis yang ingin tampil kredibel dan berkinerja cepat.",
 };
