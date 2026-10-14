@@ -57,17 +57,6 @@ type ProjectShowcaseProps = {
   className?: string;
 };
 
-/**
- * Satu showcase project. Server Component murni.
- *
- * - Seluruh area bisa diklik lewat "stretched link" pada judul; nama
- *   tautan bagi pembaca layar hanya judul project.
- * - Hover (otomatis hanya di perangkat berkemampuan hover): gambar
- *   membesar 2%, overlay tipis, panah muncul di sudut gambar, judul
- *   bergeser sedikit. Fokus keyboard memicu efek yang sama.
- * - Transform judul ada di <span> dalam agar area klik ::after tidak
- *   ikut bergeser.
- */
 export function ProjectShowcase({ project, number, layout = "left", className }: ProjectShowcaseProps) {
   const { title, category, year, description, technologies, image, href } = project;
   const cfg = layouts[layout];
