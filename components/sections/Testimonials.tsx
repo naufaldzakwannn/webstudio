@@ -7,9 +7,11 @@ export function Testimonials() {
   if (!primary) return null;
 
   return (
-    <section className="py-24 md:py-36">
+    <section aria-labelledby="testimonials-heading" className="py-24 md:py-36">
       <Container>
-        <p className="font-mono text-xs text-muted">Kata klien</p>
+        <h2 id="testimonials-heading" className="font-mono text-xs font-normal text-muted">
+          Kata klien
+        </h2>
 
         <div className="mt-10 grid grid-cols-1 gap-y-20 md:mt-16 md:grid-cols-12 md:gap-x-6">
           <Quote testimonial={primary} className="md:col-span-8 md:col-start-1" />

@@ -5,16 +5,9 @@ type ProcessStepProps = {
   className?: string;
 };
 
-/**
- * Satu tahap proses kerja. Server Component murni, tanpa interaksi.
- *
- * Sengaja tidak ada garis/koneksi ke tahap lain — pembeda antar tahap
- * cukup lewat hairline tipis di atas tiap panel, bukan timeline
- * vertikal yang menyambungkan semuanya.
- */
 export function ProcessStep({ step, className }: ProcessStepProps) {
   return (
-    <div className={className}>
+    <li className={className}>
       <div className="reveal-step border-t border-border pt-6">
         <span aria-hidden="true" className="block font-display text-[clamp(3rem,2vw+2.5rem,4.75rem)] italic leading-none text-accent">
           {step.number}
@@ -33,6 +26,6 @@ export function ProcessStep({ step, className }: ProcessStepProps) {
           ))}
         </ul>
       </div>
-    </div>
+    </li>
   );
 }

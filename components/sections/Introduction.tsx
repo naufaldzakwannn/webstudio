@@ -3,12 +3,12 @@ import { studioFacts } from "@/lib/data/studio";
 
 export function Introduction() {
   return (
-    <section className="py-24 md:py-36">
+    <section aria-labelledby="intro-heading" className="py-24 md:py-36">
       <Container>
         <div className="reveal grid grid-cols-1 gap-y-14 md:grid-cols-12 md:gap-x-6">
           <p className="font-mono text-xs text-muted md:col-start-2 md:col-span-3">Studio kami</p>
 
-          <h2 className="mt-3 font-display text-[clamp(2rem,1.4rem+2.2vw,3.5rem)] leading-[1.08] text-foreground md:col-start-2 md:col-span-8 md:mt-4">
+          <h2 id="intro-heading" className="mt-3 font-display text-[clamp(2rem,1.4rem+2.2vw,3.5rem)] leading-[1.08] text-foreground md:col-start-2 md:col-span-8 md:mt-4">
             Kami membangun website yang <span className="italic">lebih mudah dipahami, dipercaya, dan dipilih</span> — bukan sekadar terlihat bagus.
           </h2>
 

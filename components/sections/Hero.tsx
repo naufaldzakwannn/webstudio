@@ -4,16 +4,15 @@ import { Container } from "@/components/ui/Container";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-12 pb-28 md:pt-16 md:pb-40">
+    <section aria-labelledby="hero-heading" className="relative overflow-hidden pt-12 pb-28 md:pt-16 md:pb-40">
       <Container>
         <div className="grid grid-cols-1 gap-y-10 md:grid-cols-12 md:gap-x-6 md:gap-y-16">
           <p className="animate-fade-up font-mono text-xs text-muted md:col-span-5" style={{ animationDelay: "0ms" }}>
-            Up Tech — studio pembuatan website, sejak 2026
+            Nama Studio — studio pembuatan website, sejak 2019
           </p>
 
-          <h1 className="animate-rise font-display text-[clamp(2.25rem,1.6rem+4vw,5.75rem)] leading-[1.04] text-foreground md:col-span-12 lg:col-span-8 lg:col-start-1">
-            <span className="italic">Merancang dulu,</span>
-            <br />
+          <h1 id="hero-heading" className="animate-rise font-display text-[clamp(2.25rem,1.6rem+4vw,5.75rem)] leading-[1.04] text-foreground md:col-span-12 lg:col-span-8 lg:col-start-1">
+            <span className="italic">Merancang dulu,</span> <br />
             baru membangun.
           </h1>
 
@@ -33,8 +32,8 @@ export function Hero() {
           <div className="animate-rise group relative md:col-span-8 md:col-start-5 md:mr-[calc(var(--bleed)*-1)] lg:col-span-6 lg:col-start-7 lg:-mt-24">
             <div className="relative aspect-[4/5] overflow-hidden rounded-(--radius-lg) md:aspect-auto md:h-[clamp(24rem,85vh,44rem)]">
               <Image
-                src="/projects/kopi.jpeg"
-                alt="Preview visual salah satu project — studi kasus Ruang Kopi ID"
+                src="/projects/featured-01.svg"
+                alt="Cuplikan tampilan website Ruang Kopi ID, salah satu studi kasus kami"
                 fill
                 priority
                 sizes="(min-width: 768px) 40vw, 100vw"

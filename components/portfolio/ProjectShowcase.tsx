@@ -5,14 +5,7 @@ import type { Project } from "@/lib/data/projects";
 
 export type ProjectLayout = "left" | "right" | "full" | "flank";
 
-/**
- * Penempatan tiap bagian di grid 12 kolom (desktop) per varian layout.
- * Urutan DOM selalu sama (gambar → info → judul → detail) supaya urutan
- * baca di mobile & pembaca layar konsisten; desktop diatur ulang lewat
- * penempatan grid.
- */
 const layouts: Record<ProjectLayout, { media: string; eyebrow: string; title: string; details: string; titleSize: string; sizes: string }> = {
-  // Gambar landscape besar di kiri, metadata menyebar di kanan.
   left: {
     media: "md:col-span-7 md:col-start-1 md:row-span-3 md:row-start-1",
     eyebrow: "md:col-span-4 md:col-start-9 md:row-start-1 md:self-start",
@@ -21,7 +14,6 @@ const layouts: Record<ProjectLayout, { media: string; eyebrow: string; title: st
     titleSize: "text-[clamp(1.875rem,1.3rem+2vw,3rem)]",
     sizes: "(min-width: 768px) 58vw, 100vw",
   },
-  // Metadata di kiri dengan judul lebih besar, gambar portrait di kanan.
   right: {
     media: "md:col-span-5 md:col-start-8 md:row-span-3 md:row-start-1",
     eyebrow: "md:col-span-5 md:col-start-1 md:row-start-1 md:self-start",
@@ -30,7 +22,6 @@ const layouts: Record<ProjectLayout, { media: string; eyebrow: string; title: st
     titleSize: "text-[clamp(2.25rem,1.4rem+3.5vw,4.5rem)]",
     sizes: "(min-width: 768px) 42vw, 100vw",
   },
-  // Visual panoramik selebar container, info berjajar tiga di bawahnya.
   full: {
     media: "md:col-span-12 md:row-start-1",
     eyebrow: "md:col-span-3 md:col-start-1 md:row-start-2 md:mt-4",
@@ -39,7 +30,6 @@ const layouts: Record<ProjectLayout, { media: string; eyebrow: string; title: st
     titleSize: "text-[clamp(2rem,1.4rem+2.6vw,3.75rem)]",
     sizes: "(min-width: 1280px) 1216px, (min-width: 768px) calc(100vw - 4rem), 100vw",
   },
-  // Judul besar di atas, gambar persegi di tengah, info mengapit di kiri & kanan.
   flank: {
     media: "md:col-span-6 md:col-start-3 md:row-start-2",
     eyebrow: "md:col-span-2 md:col-start-1 md:row-start-2 md:self-start md:flex-col md:items-start md:gap-1.5",
@@ -64,7 +54,6 @@ export function ProjectShowcase({ project, number, layout = "left", className }:
   return (
     <article className={cn("group relative", className)}>
       <div className="grid grid-cols-1 gap-y-5 md:grid-cols-12 md:gap-x-6 md:gap-y-6">
-        {/* Media */}
         <div className={cn("relative overflow-hidden rounded-(--radius-lg)", cfg.media)}>
           <Image
             src={image.src}
@@ -85,7 +74,6 @@ export function ProjectShowcase({ project, number, layout = "left", className }:
           </span>
         </div>
 
-        {/* Nomor, kategori, tahun */}
         <p className={cn("flex flex-wrap items-baseline gap-x-4 gap-y-1 font-mono text-xs text-muted", cfg.eyebrow)}>
           <span className="text-foreground">Project {number}</span>
           <span>{category}</span>
@@ -99,7 +87,6 @@ export function ProjectShowcase({ project, number, layout = "left", className }:
           </Link>
         </h3>
 
-        {/* Deskripsi, teknologi, ajakan */}
         <div className={cfg.details}>
           <p className="max-w-[44ch] text-sm text-muted">{description}</p>
           <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[0.7rem] text-muted">
@@ -107,7 +94,6 @@ export function ProjectShowcase({ project, number, layout = "left", className }:
               <li key={tech}>{tech}</li>
             ))}
           </ul>
-          {/* Penanda visual saja — tautan sebenarnya adalah judul (stretched link) */}
           <span aria-hidden="true" className="relative mt-5 inline-flex items-center text-sm font-medium text-foreground">
             Lihat project
             <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-[0.4] bg-foreground transition-[transform,background-color] duration-300 ease-out group-hover:scale-x-100 group-hover:bg-accent group-has-[:focus-visible]:scale-x-100" />

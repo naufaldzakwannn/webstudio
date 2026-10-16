@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/data/site";
 
 export function CTA() {
   return (
-    <section className="py-28 md:py-44">
+    <section aria-labelledby="cta-heading" className="py-28 md:py-44">
       <Container>
         <div className="flex items-center gap-3">
           <StudioMark />
@@ -12,9 +12,8 @@ export function CTA() {
         </div>
         <div className="mt-6 h-px w-full bg-border" aria-hidden="true" />
 
-        <h2 className="reveal mt-12 font-display text-[clamp(2.25rem,1.375rem+4.7vw,5.5rem)] leading-[1.03] text-foreground md:mt-16">
-          <span className="italic">Punya sesuatu</span>
-          <br />
+        <h2 id="cta-heading" className="reveal mt-12 font-display text-[clamp(2.25rem,1.375rem+4.7vw,5.5rem)] leading-[1.03] text-foreground md:mt-16">
+          <span className="italic">Punya sesuatu</span> <br />
           yang layak dibangun?
         </h2>
 

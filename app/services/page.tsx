@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
 
-export const metadata: Metadata = {
-  title: "Layanan",
-};
+export const generateMetadata = pageMetadata({
+  title: "Layanan Pembuatan Website",
+  path: "/services",
+  description: "Landing page, website bisnis, aplikasi web custom, redesign, serta perawatan dan optimasi agar website Anda tetap cepat dan aman.",
+});
 
-// Placeholder — daftar layanan & detail penawaran dikerjakan pada tahap berikutnya.
 export default function ServicesPage() {
   return (
     <Section>

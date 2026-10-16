@@ -1,9 +1,13 @@
 export const siteConfig = {
   name: "Up Tech",
   tagline: "Jasa pembuatan website untuk bisnis yang ingin tampil kredibel.",
-  email: "Up Tech@gmail.com",
-  url: "https://uptech.id",
+  description: "Studio pembuatan website di Jakarta. Kami merancang dan membangun landing page, website bisnis, dan aplikasi web yang jelas, cepat, dan mudah dipercaya.",
+  email: "uptech@gmail.com",
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://namastudio.id").replace(/\/$/, ""),
   location: "Jakarta, Indonesia",
+  address: { locality: "Jakarta", country: "ID" },
+  locale: "id_ID",
+  keywords: ["jasa pembuatan website", "web development studio", "website bisnis", "landing page", "aplikasi web custom", "redesign website"],
 } as const;
 
 export type SocialLink = {

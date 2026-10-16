@@ -10,11 +10,13 @@ const tierStyles = {
 
 export function Technology() {
   return (
-    <section className="py-24 md:py-36">
+    <section aria-labelledby="tech-heading" className="py-24 md:py-36">
       <Container>
         <div className="reveal grid grid-cols-1 gap-y-6 md:grid-cols-12 md:gap-x-6">
           <p className="font-mono text-xs text-muted md:col-span-3">Tech stack</p>
-          <p className="font-display text-xl italic text-foreground md:col-span-6 md:col-start-4">Tools change. Good engineering doesn&apos;t.</p>
+          <h2 id="tech-heading" className="font-display text-xl italic text-foreground md:col-span-6 md:col-start-4">
+            Tools change. Good engineering doesn&apos;t.
+          </h2>
         </div>
 
         <ul className="tech-list mt-14 flex flex-wrap items-baseline gap-x-6 gap-y-3 md:mt-20 md:gap-x-8">

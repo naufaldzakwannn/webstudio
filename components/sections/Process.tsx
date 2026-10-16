@@ -12,25 +12,17 @@ export function Process() {
         </h2>
       </Container>
 
-      <Container className="mt-14 md:hidden">
-        <div className="flex flex-col gap-14">
-          {processSteps.map((step) => (
-            <ProcessStep key={step.number} step={step} />
-          ))}
-        </div>
-      </Container>
-
       <div
         role="region"
-        aria-label="Tahapan proses kerja, geser untuk melihat semua"
+        aria-label="Tahapan proses kerja"
         tabIndex={0}
-        className="mt-16 hidden overflow-x-auto pb-4 pl-[max(1.5rem,calc((100vw-80rem)/2+2rem))] [scroll-snap-type:x_proximity] [scrollbar-width:thin] md:block"
+        className="mt-14 md:mt-16 md:overflow-x-auto md:pb-4 md:pl-(--bleed) md:[scroll-snap-type:x_proximity] md:[scroll-padding-inline-start:var(--bleed)] md:[scrollbar-width:thin]"
       >
-        <div className="flex w-max gap-10 pr-12">
+        <ol className="flex flex-col gap-14 px-(--page-gutter) md:w-max md:flex-row md:gap-10 md:px-0 md:pr-12">
           {processSteps.map((step) => (
-            <ProcessStep key={step.number} step={step} className="w-[19rem] flex-none scroll-ml-8 [scroll-snap-align:start] lg:w-[21rem]" />
+            <ProcessStep key={step.number} step={step} className="md:w-[19rem] md:flex-none md:[scroll-snap-align:start] lg:w-[21rem]" />
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );
