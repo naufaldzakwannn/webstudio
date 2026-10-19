@@ -9,7 +9,7 @@ export function Footer() {
       <Container>
         <div className="grid grid-cols-1 gap-x-6 gap-y-12 md:grid-cols-12">
           <div className="md:col-span-12 lg:col-span-4">
-            <Link href="/" className="font-display text-lg italic text-foreground">
+            <Link href="/" className="-my-3 inline-block py-3 font-display text-lg italic text-foreground">
               {siteConfig.name}
             </Link>
             <p className="mt-3 max-w-[32ch] text-sm text-muted">{siteConfig.tagline}</p>
@@ -17,10 +17,10 @@ export function Footer() {
 
           <nav aria-label="Navigasi footer" className="md:col-span-4 lg:col-span-2 lg:col-start-6">
             <p className="font-mono text-xs text-muted">Navigasi</p>
-            <ul className="mt-4 flex flex-col gap-2.5">
+            <ul role="list" className="mt-1 flex flex-col gap-0 md:mt-4 md:gap-2.5">
               {navItems.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="-my-1 inline-block py-1 text-sm text-foreground transition-colors duration-200 hover:text-accent">
+                  <Link href={item.href} className="inline-block py-3 text-sm text-foreground transition-colors duration-200 hover:text-accent md:-my-1 md:py-1">
                     {item.label}
                   </Link>
                 </li>
@@ -30,10 +30,10 @@ export function Footer() {
 
           <nav aria-label="Layanan" className="md:col-span-4 lg:col-span-2 lg:col-start-8">
             <p className="font-mono text-xs text-muted">Layanan</p>
-            <ul className="mt-4 flex flex-col gap-2.5">
+            <ul role="list" className="mt-1 flex flex-col gap-0 md:mt-4 md:gap-2.5">
               {services.map((service) => (
                 <li key={service.slug}>
-                  <Link href={`/services#${service.slug}`} className="-my-1 inline-block py-1 text-sm text-foreground transition-colors duration-200 hover:text-accent">
+                  <Link href={`/services#${service.slug}`} className="inline-block py-3 text-sm text-foreground transition-colors duration-200 hover:text-accent md:-my-1 md:py-1">
                     {service.title}
                   </Link>
                 </li>
@@ -43,17 +43,18 @@ export function Footer() {
 
           <div className="md:col-span-4 lg:col-span-3 lg:col-start-10">
             <p className="font-mono text-xs text-muted">Kontak</p>
-            <ul className="mt-4 flex flex-col gap-2.5">
+            <ul role="list" className="mt-1 flex flex-col gap-0 md:mt-4 md:gap-2.5">
               <li>
-                <a href={`mailto:${siteConfig.email}`} className="-my-1 inline-block py-1 [overflow-wrap:anywhere] text-sm text-foreground transition-colors duration-200 hover:text-accent">
+                <a href={`mailto:${siteConfig.email}`} className="inline-block py-3 [overflow-wrap:anywhere] text-sm text-foreground transition-colors duration-200 hover:text-accent md:-my-1 md:py-1">
                   {siteConfig.email}
                 </a>
               </li>
-              <li className="text-sm text-muted">{siteConfig.location}</li>
+              <li className="py-3 text-sm text-muted md:py-0">{siteConfig.location}</li>
               {socialLinks.map((social) => (
                 <li key={social.label}>
-                  <a href={social.href} target="_blank" rel="noopener noreferrer" className="-my-1 inline-block py-1 text-sm text-foreground transition-colors duration-200 hover:text-accent">
+                  <a href={social.href} target="_blank" rel="noopener noreferrer" className="inline-block py-3 text-sm text-foreground transition-colors duration-200 hover:text-accent md:-my-1 md:py-1">
                     {social.label}
+                    <span className="sr-only"> (membuka tab baru)</span>
                   </a>
                 </li>
               ))}

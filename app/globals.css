@@ -1,14 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f5f1;
-  --surface: #fcfbf8;
-  --foreground: #15161b;
-  --muted: #6e6f76;
-  --accent: #2645f5;
-  --accent-ink: #0f1f99;
-  --accent-foreground: #ffffff;
-  --border: #e4e1d8;
+  /* Warna inti — disamakan dengan dokumen art direction (light mode saja untuk tahap ini) */
+  --background: #f6f5f1; /* latar halaman: paper, hangat, bukan putih polos */
+  --surface: #fcfbf8; /* latar kartu/panel: sedikit lebih terang dari background */
+  --foreground: #15161b; /* teks utama: near-black, bukan hitam pekat */
+  --muted: #6e6f76; /* teks sekunder/caption/metadata */
+  --accent: #2645f5; /* satu-satunya aksen kuat: tautan aktif, CTA, fokus */
+  --accent-ink: #0f1f99; /* accent state hover/pressed — lebih gelap, bukan lebih terang */
+  --accent-foreground: #ffffff; /* teks di atas permukaan --accent */
+  --border: #e4e1d8; /* garis pembatas tipis, hairline */
 
   --radius-sm: 0.25rem;
   --radius-md: 0.625rem;
@@ -72,6 +73,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-h) + 1rem);
   }
 
   body {
@@ -112,6 +114,8 @@
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    animation-delay: 0s !important;
+    transition-delay: 0s !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
@@ -172,9 +176,18 @@
     }
   }
 
+  @keyframes reveal-step-in {
+    from {
+      transform: translateX(1.5rem);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
   @media (min-width: 48rem) and (prefers-reduced-motion: no-preference) {
     .reveal-step {
-      animation: reveal-in linear both;
+      animation: reveal-step-in linear both;
       animation-timeline: view(inline);
       animation-range: entry 10% entry 60%;
     }
@@ -182,7 +195,7 @@
 }
 
 .tech-list:hover .tech-item {
-  opacity: 0.35;
+  opacity: 0.5;
 }
 .tech-list:hover .tech-item:hover {
   opacity: 1;
