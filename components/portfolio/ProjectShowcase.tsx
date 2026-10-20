@@ -80,16 +80,18 @@ export function ProjectShowcase({ project, number, layout = "left", className }:
           <span>{year}</span>
         </p>
 
-        {/* Judul */}
         <h3 className={cn("font-display leading-[1.05] text-foreground", cfg.titleSize, cfg.title)}>
-          <Link href={href} className="after:absolute after:inset-0 after:content-['']">
+          <Link
+            href={href}
+            className="focus-visible:outline-none after:absolute after:inset-0 after:rounded-(--radius-lg) after:content-[''] focus-visible:after:outline-2 focus-visible:after:outline-offset-8 focus-visible:after:outline-accent"
+          >
             <span className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-2 group-active:translate-x-1 group-has-[:focus-visible]:translate-x-2">{title}</span>
           </Link>
         </h3>
 
         <div className={cfg.details}>
           <p className="max-w-[44ch] text-sm text-muted">{description}</p>
-          <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[0.7rem] text-muted">
+          <ul role="list" className="mt-3 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[0.7rem] text-muted">
             {technologies.map((tech) => (
               <li key={tech}>{tech}</li>
             ))}

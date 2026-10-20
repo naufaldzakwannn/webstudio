@@ -2,10 +2,18 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/lib/data/site";
 
+/**
+ * CTA — closing statement studio, bukan banner promosi.
+ * Tanpa card/gradient besar; hanya tipografi besar, whitespace, dan
+ * beberapa penanda kecil (garis, koordinat, mark studio) yang dijaga
+ * tetap senyap. Server Component murni, tanpa motion selain hover bawaan
+ * dari Button/tautan yang sudah ada di design system.
+ */
 export function CTA() {
   return (
     <section aria-labelledby="cta-heading" className="py-28 md:py-44">
       <Container>
+        {/* Kicker + studio mark kecil + garis tipis */}
         <div className="flex items-center gap-3">
           <StudioMark />
           <p className="font-mono text-xs text-muted">Mulai dari sini</p>
@@ -27,18 +35,23 @@ export function CTA() {
             </svg>
           </Button>
 
-          <a href={`mailto:${siteConfig.email}`} className="group/link relative -my-2 inline-flex items-center py-2 text-sm text-foreground">
+          <a href={`mailto:${siteConfig.email}`} className="group/link relative -my-3 inline-flex items-center py-3 text-sm text-foreground">
             {siteConfig.email}
-            <span aria-hidden="true" className="absolute bottom-1 left-0 h-px w-full origin-left scale-x-[0.4] bg-foreground transition-transform duration-300 ease-out group-hover/link:scale-x-100 group-hover/link:bg-accent" />
+            <span
+              aria-hidden="true"
+              className="absolute bottom-2 left-0 h-px w-full origin-left scale-x-[0.4] bg-foreground transition-transform duration-300 ease-out group-hover/link:scale-x-100 group-focus-visible/link:scale-x-100 group-hover/link:bg-accent"
+            />
           </a>
         </div>
 
+        {/* Metadata kecil, senyap — koordinat lokasi studio */}
         <p className="mt-20 font-mono text-[0.7rem] text-muted md:mt-28">Jakarta, Indonesia — 6.2088°S, 106.8456°E</p>
       </Container>
     </section>
   );
 }
 
+/** Mark studio minimal — lingkaran + crosshair, murni stroke, bukan logo bergambar. */
 function StudioMark() {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" className="text-muted">
