@@ -1,6 +1,16 @@
 import { Container } from "@/components/ui/Container";
 import { studioFacts } from "@/lib/data/studio";
 
+/**
+ * Introduction — menjawab "siapa kami & kenapa pendekatannya berbeda".
+ *
+ * Layout sengaja berbeda dari Hero: bukan headline-kiri + gambar-kanan,
+ * tapi kolom teks editorial (label → statement → paragraf, semuanya
+ * sejajar kiri) berdampingan dengan satu daftar fakta tipis di kanan —
+ * bukan grid 3 kartu, tidak ada angka besar bergaya dashboard.
+ *
+ * Server Component murni — tidak ada motion/JS, murni tipografi & grid.
+ */
 export function Introduction() {
   return (
     <section aria-labelledby="intro-heading" className="py-24 md:py-36">
@@ -17,7 +27,8 @@ export function Introduction() {
             cepat, bukan cuma tampilan yang indah.
           </p>
 
-          <ul className="flex flex-col divide-y divide-border border-t border-border md:col-start-9 md:col-span-4 md:row-start-1 md:row-span-3 md:self-end">
+          {/* Daftar fakta — tipis, tekstual, bukan stat card besar */}
+          <ul role="list" className="flex flex-col divide-y divide-border border-t border-border md:col-start-9 md:col-span-4 md:row-start-1 md:row-span-3 md:self-end">
             {studioFacts.map((fact) => (
               <li key={fact.label} className="flex items-baseline justify-between gap-4 py-4 md:py-5">
                 <span className="font-mono text-xs text-muted">{fact.label}</span>

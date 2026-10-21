@@ -2,24 +2,40 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 
+/**
+ * Hero — pernyataan pembuka, bukan slogan generik.
+ *
+ * Komposisi sengaja asimetris: headline besar di kiri-atas, paragraf
+ * pendukung digeser ke kanan (bukan ditumpuk lurus di bawah headline),
+ * dan visual project ditempatkan menjorok ke luar grid + tumpang tindih
+ * secara vertikal dengan blok teks di atasnya.
+ *
+ * Server Component murni — tidak ada state, tidak ada mousemove tracking.
+ * "Interaksi kursor" dicapai lewat CSS :hover/group-hover saja, supaya
+ * tetap ringan di mobile dan tidak butuh "use client".
+ */
 export function Hero() {
   return (
     <section aria-labelledby="hero-heading" className="relative overflow-hidden pt-12 pb-28 md:pt-16 md:pb-40">
       <Container>
         <div className="grid grid-cols-1 gap-y-10 md:grid-cols-12 md:gap-x-6 md:gap-y-16">
+          {/* Kicker */}
           <p className="animate-fade-up font-mono text-xs text-muted md:col-span-5" style={{ animationDelay: "0ms" }}>
             Nama Studio — studio pembuatan website, sejak 2019
           </p>
 
+          {/* Headline besar, asimetris: berhenti di kolom 8 dari 12, bukan full-width */}
           <h1 id="hero-heading" className="animate-rise font-display text-[clamp(2.25rem,1.6rem+4vw,5.75rem)] leading-[1.04] text-foreground md:col-span-12 lg:col-span-8 lg:col-start-1">
             <span className="italic">Merancang dulu,</span> <br />
             baru membangun.
           </h1>
 
+          {/* Paragraf pendukung — digeser ke kanan-bawah headline, bukan ditumpuk lurus di bawahnya */}
           <p className="animate-fade-up text-base text-muted md:col-span-7 lg:col-span-4 lg:col-start-9 lg:self-start lg:pt-3" style={{ animationDelay: "120ms" }}>
             Kami membangun website untuk bisnis yang serius soal detail — dimulai dari riset kecil tentang audiens Anda, selesai di baris kode terakhir.
           </p>
 
+          {/* Metadata kecil pendukung, kolom kiri — fungsi bukti sosial ringan */}
           <div className="animate-fade-up flex gap-8 font-mono text-xs text-muted md:col-span-6 md:col-start-1 lg:col-span-5 lg:self-end" style={{ animationDelay: "200ms" }}>
             <p>
               <span className="text-foreground">12+</span> project selesai
@@ -29,7 +45,11 @@ export function Hero() {
             </p>
           </div>
 
+          {/* Visual project — menjorok keluar grid ke kanan, tumpang-tindih ke atas
+              lewat -mt negatif di desktop, dengan floating label di sudutnya. */}
           <div className="animate-rise group relative md:col-span-8 md:col-start-5 md:mr-[calc(var(--bleed)*-1)] lg:col-span-6 lg:col-start-7 lg:-mt-24">
+            {/* md+: tinggi eksplisit, BUKAN aspect-ratio + max-h (max-h menyempitkan
+                lebar lewat transfer rasio dan menggagalkan bleed ke tepi layar) */}
             <div className="relative aspect-[4/5] overflow-hidden rounded-(--radius-lg) md:aspect-auto md:h-[clamp(24rem,85vh,44rem)]">
               <Image
                 src="/projects/featured-01.svg"
@@ -41,15 +61,20 @@ export function Hero() {
               />
             </div>
 
+            {/* Floating label */}
             <div className="absolute -bottom-5 left-5 rounded-(--radius-sm) border border-border bg-surface px-4 py-3 shadow-none transition-transform duration-300 ease-out group-hover:-translate-y-1">
               <p className="font-mono text-[0.7rem] text-muted">Studi kasus — 2026</p>
               <p className="mt-0.5 text-sm text-foreground">Ruang Kopi ID</p>
             </div>
           </div>
 
-          <Link href="/portfolio" className="animate-fade-up group/link relative -my-2 inline-flex w-fit items-center py-2 text-sm font-medium text-foreground md:col-span-4 md:col-start-1" style={{ animationDelay: "300ms" }}>
+          {/* Satu tautan tenang, bukan sepasang tombol "Get Started / View Work" */}
+          <Link href="/portfolio" className="animate-fade-up group/link relative -my-3 inline-flex w-fit items-center py-3 text-sm font-medium text-foreground md:col-span-4 md:col-start-1" style={{ animationDelay: "300ms" }}>
             Lihat semua studi kasus
-            <span aria-hidden="true" className="absolute bottom-1 left-0 h-px w-full origin-left scale-x-[0.4] bg-foreground transition-transform duration-300 ease-out group-hover/link:scale-x-100 group-hover/link:bg-accent" />
+            <span
+              aria-hidden="true"
+              className="absolute bottom-2 left-0 h-px w-full origin-left scale-x-[0.4] bg-foreground transition-transform duration-300 ease-out group-hover/link:scale-x-100 group-focus-visible/link:scale-x-100 group-hover/link:bg-accent"
+            />
           </Link>
         </div>
       </Container>
