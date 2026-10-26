@@ -3,8 +3,14 @@ import { Container } from "@/components/ui/Container";
 import { ProjectShowcase, type ProjectLayout } from "@/components/portfolio/ProjectShowcase";
 import { projects } from "@/lib/data/projects";
 
+// Urutan layout per project — sengaja tidak ada dua project berurutan yang sama.
 const layouts: ProjectLayout[] = ["left", "right", "full", "flank"];
 
+/**
+ * Portfolio — showcase editorial, bukan grid kartu.
+ * Data dibaca dari lib/data/projects.ts; tata letak per project
+ * ditentukan di sini berdasarkan urutan. Server Component murni.
+ */
 export function Portfolio() {
   const years = projects.map((p) => Number(p.year));
   const range = `${Math.min(...years)} — ${Math.max(...years)}`;
@@ -22,7 +28,7 @@ export function Portfolio() {
           </p>
         </div>
 
-        <ol className="mt-16 flex flex-col gap-28 md:mt-24 md:gap-44">
+        <ol role="list" className="mt-16 flex flex-col gap-28 md:mt-24 md:gap-44">
           {projects.map((project, i) => (
             <li key={project.slug} className="reveal">
               <ProjectShowcase project={project} number={String(i + 1).padStart(2, "0")} layout={layouts[i % layouts.length]} />
@@ -31,9 +37,12 @@ export function Portfolio() {
         </ol>
 
         <div className="mt-20 md:mt-32">
-          <Link href="/portfolio" className="group/link relative -my-2 inline-flex w-fit items-center py-2 text-sm font-medium text-foreground">
+          <Link href="/portfolio" className="group/link relative -my-3 inline-flex w-fit items-center py-3 text-sm font-medium text-foreground">
             Lihat semua project
-            <span aria-hidden="true" className="absolute bottom-1 left-0 h-px w-full origin-left scale-x-[0.4] bg-foreground transition-transform duration-300 ease-out group-hover/link:scale-x-100 group-hover/link:bg-accent" />
+            <span
+              aria-hidden="true"
+              className="absolute bottom-2 left-0 h-px w-full origin-left scale-x-[0.4] bg-foreground transition-transform duration-300 ease-out group-hover/link:scale-x-100 group-focus-visible/link:scale-x-100 group-hover/link:bg-accent"
+            />
           </Link>
         </div>
       </Container>
