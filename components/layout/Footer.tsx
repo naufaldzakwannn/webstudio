@@ -62,7 +62,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-3 border-t border-border pt-6 md:mt-16 md:flex-row md:items-center md:justify-between">
+        <div className="mt-16 flex flex-col gap-3 md:mt-20 md:flex-row md:items-center md:justify-between">
           <p className="font-mono text-xs text-muted">
             © {new Date().getFullYear()} {siteConfig.name}. Seluruh hak cipta dilindungi.
           </p>

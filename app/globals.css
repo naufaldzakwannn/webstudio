@@ -11,9 +11,9 @@
   --accent-foreground: #ffffff; /* teks di atas permukaan --accent */
   --border: #e4e1d8; /* garis pembatas tipis, hairline */
 
-  --radius-sm: 0.25rem;
-  --radius-md: 0.625rem;
-  --radius-lg: 1rem;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
 
   --space-section-y: clamp(3rem, 2rem + 4vw, 6rem);
 
