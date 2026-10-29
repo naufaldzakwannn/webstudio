@@ -2,25 +2,15 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { siteConfig } from "@/lib/data/site";
 
-/**
- * CTA — closing statement studio, bukan banner promosi.
- * Tanpa card/gradient besar; hanya tipografi besar, whitespace, dan
- * beberapa penanda kecil (garis, koordinat, mark studio) yang dijaga
- * tetap senyap. Server Component murni, tanpa motion selain hover bawaan
- * dari Button/tautan yang sudah ada di design system.
- */
 export function CTA() {
   return (
     <section aria-labelledby="cta-heading" className="py-28 md:py-44">
       <Container>
-        {/* Kicker + studio mark kecil + garis tipis */}
         <div className="flex items-center gap-3">
           <StudioMark />
           <p className="font-mono text-xs text-muted">Mulai dari sini</p>
         </div>
-        <div className="mt-6 h-px w-full bg-border" aria-hidden="true" />
-
-        <h2 id="cta-heading" className="reveal mt-12 font-display text-[clamp(2.25rem,1.375rem+4.7vw,5.5rem)] leading-[1.03] text-foreground md:mt-16">
+        <h2 id="cta-heading" className="mt-10 font-display text-[clamp(2.25rem,1.375rem+4.7vw,5.5rem)] leading-[1.03] text-foreground md:mt-12">
           <span className="italic">Punya sesuatu</span> <br />
           yang layak dibangun?
         </h2>
@@ -30,9 +20,6 @@ export function CTA() {
         <div className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-6 md:mt-16">
           <Button href="/contact" variant="primary" size="lg">
             Mulai percakapan
-            <svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M4 12L12 4M5 4h7v7" />
-            </svg>
           </Button>
 
           <a href={`mailto:${siteConfig.email}`} className="group/link relative -my-3 inline-flex items-center py-3 text-sm text-foreground">
@@ -43,15 +30,11 @@ export function CTA() {
             />
           </a>
         </div>
-
-        {/* Metadata kecil, senyap — koordinat lokasi studio */}
-        <p className="mt-20 font-mono text-[0.7rem] text-muted md:mt-28">Jakarta, Indonesia — 6.2088°S, 106.8456°E</p>
       </Container>
     </section>
   );
 }
 
-/** Mark studio minimal — lingkaran + crosshair, murni stroke, bukan logo bergambar. */
 function StudioMark() {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" className="text-muted">
