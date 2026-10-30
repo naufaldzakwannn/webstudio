@@ -3,14 +3,8 @@ import { Container } from "@/components/ui/Container";
 import { ProjectShowcase, type ProjectLayout } from "@/components/portfolio/ProjectShowcase";
 import { projects } from "@/lib/data/projects";
 
-// Urutan layout per project — sengaja tidak ada dua project berurutan yang sama.
 const layouts: ProjectLayout[] = ["left", "right", "full", "flank"];
 
-/**
- * Portfolio — showcase editorial, bukan grid kartu.
- * Data dibaca dari lib/data/projects.ts; tata letak per project
- * ditentukan di sini berdasarkan urutan. Server Component murni.
- */
 export function Portfolio() {
   const years = projects.map((p) => Number(p.year));
   const range = `${Math.min(...years)} — ${Math.max(...years)}`;
@@ -18,9 +12,9 @@ export function Portfolio() {
   return (
     <section className="py-24 md:py-36" aria-labelledby="portfolio-heading">
       <Container>
-        <div className="reveal grid grid-cols-1 gap-y-6 md:grid-cols-12 md:items-end md:gap-x-6">
+        <div className="grid grid-cols-1 gap-y-4 md:grid-cols-12 md:items-end md:gap-x-6">
           <p className="font-mono text-xs text-muted md:col-span-12">Karya terpilih</p>
-          <h2 id="portfolio-heading" className="font-display text-[clamp(2rem,1.4rem+2.2vw,3.5rem)] leading-[1.08] text-foreground md:col-span-8">
+          <h2 id="portfolio-heading" className="font-display text-[clamp(1.5rem,1.1rem+1.6vw,2.5rem)] leading-[1.15] text-foreground md:col-span-8">
             Setiap project dimulai dari <span className="italic">satu masalah nyata.</span>
           </h2>
           <p className="font-mono text-xs text-muted md:col-span-3 md:col-start-10 md:text-right">
