@@ -2,33 +2,16 @@ import { Container } from "@/components/ui/Container";
 import { ProcessStep } from "@/components/ui/ProcessStep";
 import { processSteps } from "@/lib/data/process";
 
-/**
- * How We Work — proses dijelaskan sebagai deretan panel editorial yang
- * bisa di-scroll horizontal di desktop (bukan timeline vertikal dengan
- * garis penghubung), dan menjadi tumpukan vertikal biasa di mobile.
- *
- * Server Component murni. Scroll horizontal memakai kemampuan native
- * browser (overflow-x + scroll-snap) — tidak ada JS tambahan untuk
- * menggeser, dan tetap bisa dioperasikan lewat keyboard karena container
- * diberi tabIndex + role="region".
- */
 export function Process() {
   return (
     <section className="py-24 md:py-36" aria-labelledby="process-heading">
       <Container>
         <p className="font-mono text-xs text-muted">Proses kerja</p>
-        <h2 id="process-heading" className="mt-3 max-w-[26ch] font-display text-[clamp(2rem,1.4rem+2.2vw,3.5rem)] leading-[1.08] text-foreground md:mt-4">
-          Lima tahap yang sama untuk setiap project — <span className="italic">supaya prosesnya bisa diprediksi,</span> bukan improvisasi.
+        <h2 id="process-heading" className="mt-3 max-w-[30ch] font-display text-[clamp(1.5rem,1.1rem+1.6vw,2.5rem)] leading-[1.15] text-foreground md:mt-4">
+          Lima tahap yang sama di setiap project, <span className="italic">supaya hasilnya bisa diprediksi.</span>
         </h2>
       </Container>
 
-      {/* SATU daftar berurutan, dua bentuk lewat CSS: tumpukan vertikal di mobile,
-          deretan horizontal yang bisa di-scroll di md+ (panel lebar tetap supaya
-          sebagian panel berikutnya terlihat sebagai ajakan untuk scroll).
-          Sebelumnya dirender dua kali (mobile + desktop, salah satunya display:none);
-          itu menggandakan semua heading dan teks di HTML yang dibaca crawler.
-          tabIndex membuat scroller bisa digeser dengan keyboard di desktop; di mobile
-          daftar tidak ter-scroll jadi hanya berupa satu tab-stop tambahan. */}
       <div
         role="region"
         aria-label="Tahapan proses kerja"
