@@ -28,11 +28,11 @@ function Quote({ testimonial, className }: { testimonial: (typeof testimonials)[
 
   return (
     <figure className={cn("reveal", className)}>
-      <blockquote className={cn("max-w-[30ch] font-display italic leading-[1.15] text-foreground", isPrimary ? "text-[clamp(1.75rem,1.2rem+2.2vw,3rem)]" : "text-[clamp(1.25rem,1rem+1vw,1.75rem)] text-muted")}>
+      <blockquote className={cn("max-w-[30ch] font-display italic text-foreground", isPrimary ? "text-[clamp(1.75rem,1.2rem+2.2vw,3rem)]" : "text-[clamp(1.25rem,1rem+1vw,1.75rem)] text-muted", "leading-[1.15]")}>
         &ldquo;{testimonial.quote}&rdquo;
       </blockquote>
 
-      <figcaption className="mt-8 flex flex-col gap-1 border-t border-border pt-5">
+      <figcaption className="mt-8 flex flex-col gap-1">
         <span className={cn("text-foreground", isPrimary ? "text-base font-medium" : "text-sm")}>{testimonial.name}</span>
         <span className="text-sm text-muted">
           {testimonial.role}, {testimonial.company}
