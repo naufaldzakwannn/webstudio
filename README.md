@@ -31,14 +31,14 @@ Testimonial dan project masih placeholder: ganti sebelum situs dipublikasikan.
 
 Token di `app/globals.css` (CSS variables, dijembatani ke Tailwind lewat `@theme inline`).
 
-| Token | Nilai |
-| --- | --- |
+| Token      | Nilai     |
+| ---------- | --------- |
 | background | `#F6F5F1` |
-| surface | `#FCFBF8` |
+| surface    | `#FCFBF8` |
 | foreground | `#15161B` |
-| muted | `#6E6F76` |
-| accent | `#2645F5` |
-| border | `#E4E1D8` |
+| muted      | `#6E6F76` |
+| accent     | `#2645F5` |
+| border     | `#E4E1D8` |
 
 Font (`next/font/google`): Fraunces 400 (heading, termasuk italic), IBM Plex Sans 400/500/600 (body),
 IBM Plex Mono 400 (label teknis, tidak di-preload). Gutter halaman dan jarak "bleed" ke tepi layar
@@ -78,7 +78,7 @@ berasal dari satu sumber: `--page-gutter` dan `--bleed`.
 
 Target: WCAG 2.2 AA. Diperiksa dengan axe-core (0 pelanggaran di 5 halaman, 390 & 1280px), uji Tab penuh, dan pengukuran touch target.
 
-- **Focus**: satu ring global di `app/globals.css` (`:focus-visible`, 2px `--accent`, offset 2px). Jangan dihapus. Satu-satunya pengecualian: *stretched link* di `ServiceItem`/`ProjectShowcase`, yang cincinnya dipindah ke seluruh baris/kartu (`focus-visible:after:outline-*`), dan `<main tabIndex={-1}>` yang hanya difokus lewat skip link.
+- **Focus**: satu ring global di `app/globals.css` (`:focus-visible`, 2px `--accent`, offset 2px). Jangan dihapus. Satu-satunya pengecualian: _stretched link_ di `ServiceItem`/`ProjectShowcase`, yang cincinnya dipindah ke seluruh baris/kartu (`focus-visible:after:outline-*`), dan `<main tabIndex={-1}>` yang hanya difokus lewat skip link.
 - **Kontras**: teks `--muted` 4.59:1 di `--background`, `--accent` 5.9:1, putih di atas `--accent` 6.5:1. Jika mengubah token warna, ukur ulang; `--muted` hanya selisih 0.09 dari batas 4.5:1.
 - **Touch target**: semua link/tombol ≥44px di mobile (padding + margin negatif, tanpa menggeser layout). Link kartu memakai seluruh kartu sebagai area sentuh.
 - **Keyboard**: skip link, urutan Tab mengikuti DOM, menu mobile = dialog modal (Esc menutup, Tab berputar termasuk tombol tutup, konten di belakang `inert`), scroller proses bisa digeser dengan panah. `scroll-padding-top` mencegah elemen fokus tertutup navbar fixed.
@@ -86,7 +86,34 @@ Target: WCAG 2.2 AA. Diperiksa dengan axe-core (0 pelanggaran di 5 halaman, 390 
 - **Daftar**: `role="list"` pada daftar ber-`list-style: none` agar Safari/VoiceOver tetap membacanya sebagai daftar.
 - **Form** (belum ada; halaman kontak masih placeholder): setiap input wajib punya `<label for>` yang terlihat, error lewat `aria-describedby` + `aria-invalid`, jangan hanya mengandalkan placeholder atau warna, dan pakai `autocomplete` yang sesuai. Tombol = aksi (`<button>`), link = navigasi (`<a>`/`Link`).
 
-## Belum dikerjakan
+## Prinsip desain (hasil review)
 
-Halaman `/services`, `/portfolio`, `/about`, `/contact` masih placeholder, begitu juga
-`/portfolio/[slug]` yang dituju tautan project. Form kontak kemungkinan butuh satu Client Component kecil.
+- **Satu vokal per section.** Skala judul sengaja berbeda: Hero dan CTA terbesar; Introduction dan Services besar; Portfolio dan Process sedang (nomor dan gambar yang jadi bintang); Technology kecil dan ringan; Testimonials didominasi kutipan. Jangan menyamakan ukuran h2 antar section.
+- **Satu informasi, satu tempat.** Teknologi hanya di Portfolio (per project) dan Technology (daftar); angka studio hanya di Introduction; lokasi hanya di Footer. Jangan mengulangnya di Hero, Services, atau CTA.
+- **Dekorasi seperlunya.** Tanpa gradient (placeholder Hero sudah flat), tanpa kartu, radius ketat (`--radius-*`: 2 / 6 / 8px), garis tipis hanya untuk struktur (pembagi daftar, kolom proses, batas footer). Elemen yang tidak bisa diklik tidak punya efek hover.
+- **Gerak hanya yang membantu.** Headline dan gambar Hero naik tipis; scroll-reveal hanya untuk gambar project, kutipan, dan panel proses.
+- **Jebakan `cn()`:** `tailwind-merge` membuang `leading-*` yang ditulis SEBELUM kelas ukuran `text-[...]`. Tulis `leading-*` paling akhir.
+- **Copy:** pakai bahasa yang dipakai klien (Indonesia), hindari janji generik dan angka yang tidak bisa dibuktikan (rating, "terbaik"). Semua angka di `lib/data/studio.ts` adalah placeholder.
+
+## Catatan teknis: scroll
+
+`globals.css` memakai `scroll-behavior: smooth`. Di Next.js 16 itu WAJIB dipasangkan dengan `data-scroll-behavior="smooth"` pada `<html>` (sudah ada di `app/layout.tsx`); tanpanya halaman baru muncul di posisi scroll lama lalu meluncur ke atas. Jangan dihapus. Tautan berhash (`/services#slug`) sengaja langsung mendarat di bagian yang dituju.
+
+## Halaman
+
+| Rute                | Isi                                                                                | Data                   |
+| ------------------- | ---------------------------------------------------------------------------------- | ---------------------- |
+| `/`                 | Homepage (8 section)                                                               | `lib/data/*`           |
+| `/services`         | Lima layanan; tiap layanan ber-`id` = slug (tujuan tautan `/services#slug`)        | `lib/data/services.ts` |
+| `/portfolio`        | Indeks project (daftar rapat, thumbnail dekoratif)                                 | `lib/data/projects.ts` |
+| `/portfolio/[slug]` | Detail project + studi kasus; statis lewat `generateStaticParams`, slug lain = 404 | `lib/data/projects.ts` |
+| `/about`            | Cerita singkat + prinsip kerja                                                     | `lib/data/about.ts`    |
+| `/contact`          | Form kontak (lihat catatan) + kontak langsung                                      | `lib/data/site.ts`     |
+
+Menambah project: tambahkan satu objek di `lib/data/projects.ts` (termasuk `serviceSlug`, `challenge`, `approach`, `outcome`) dan letakkan gambarnya di `public/projects`. Halaman detail dan sitemap ikut otomatis.
+
+## Perlu keputusan / belum dikerjakan
+
+- **Form kontak belum mengirim apa pun ke server.** `components/contact/ContactForm.tsx` membuka aplikasi email pengguna (`mailto:`) dengan pesan terisi. Untuk pengiriman sungguhan, ganti `onSubmit` dengan Server Action atau endpoint layanan email (mis. Resend), lengkap dengan perlindungan spam.
+- **Semua teks adalah draf**: layanan (`detail`, `includes`), studi kasus project, cerita dan prinsip di `lib/data/about.ts`, serta testimoni. Ganti dengan fakta sebenarnya sebelum rilis.
+- Halaman Tentang belum punya bagian tim (sengaja tidak mengarang orang).
