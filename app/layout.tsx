@@ -23,7 +23,7 @@ const ibmPlexSans = IBM_Plex_Sans({
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  weight: ["400"], // 500 tidak pernah dipakai
+  weight: ["400"],
   variable: "--font-ibm-plex-mono",
   display: "swap",
   preload: false,
@@ -78,7 +78,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${fraunces.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable}`}>
+    <html lang="id" data-scroll-behavior="smooth" className={`${fraunces.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable}`}>
       <body>
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-(--radius-md) focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:text-accent-foreground">
           Lewati ke konten utama
