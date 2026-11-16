@@ -1,19 +1,40 @@
-import type { Metadata } from "next";
-import { Section } from "@/components/ui/Section";
+import { pageMetadata } from "@/lib/seo";
 import { Container } from "@/components/ui/Container";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { ProjectIndexItem } from "@/components/portfolio/ProjectIndexItem";
+import { CTA } from "@/components/sections/CTA";
+import { projects } from "@/lib/data/projects";
 
-export const metadata: Metadata = {
+export const generateMetadata = pageMetadata({
   title: "Portfolio",
-};
+  path: "/portfolio",
+  description: "Project website dan aplikasi web yang pernah kami rancang dan bangun untuk berbagai jenis bisnis.",
+});
 
-// Placeholder — grid portfolio & studi kasus dikerjakan pada tahap berikutnya.
 export default function PortfolioPage() {
+  const years = projects.map((p) => Number(p.year));
+  const range = `${Math.min(...years)} — ${Math.max(...years)}`;
+
   return (
-    <Section>
+    <>
+      <PageHeader
+        kicker={`Portfolio · ${projects.length} project, ${range}`}
+        title={
+          <>
+            Setiap project dimulai dari <span className="italic">satu masalah nyata.</span>
+          </>
+        }
+      />
+
       <Container>
-        <h1 className="text-3xl text-foreground">Portfolio</h1>
-        <p className="mt-4 text-muted">Kumpulan project yang sudah dikerjakan akan ditampilkan di sini.</p>
+        <ol role="list" className="divide-y divide-border border-y border-border">
+          {projects.map((project, i) => (
+            <ProjectIndexItem key={project.slug} project={project} number={String(i + 1).padStart(2, "0")} />
+          ))}
+        </ol>
       </Container>
-    </Section>
+
+      <CTA />
+    </>
   );
 }
