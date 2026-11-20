@@ -89,7 +89,7 @@ export function Navbar() {
 
           <nav aria-label="Navigasi utama" className="hidden items-center gap-10 md:flex">
             {navItems.map((item) => {
-              const active = pathname === item.href;
+              const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
               return (
                 <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined} className={clsx("group relative py-3 text-sm text-foreground transition-colors duration-200", active && "text-accent")}>
                   {item.label}
@@ -140,7 +140,7 @@ export function Navbar() {
         >
           <nav aria-label="Navigasi mobile" className="flex flex-col">
             {navItems.map((item, i) => {
-              const active = pathname === item.href;
+              const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
               return (
                 <Link
                   key={item.href}
