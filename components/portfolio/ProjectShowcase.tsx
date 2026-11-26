@@ -63,15 +63,6 @@ export function ProjectShowcase({ project, number, layout = "left", className }:
             sizes={cfg.sizes}
             className="h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.02] group-has-[:focus-visible]:scale-[1.02]"
           />
-          <span aria-hidden="true" className="pointer-events-none absolute inset-0 bg-foreground/0 transition-colors duration-500 group-hover:bg-foreground/10 group-has-[:focus-visible]:bg-foreground/10" />
-          <span
-            aria-hidden="true"
-            className="absolute bottom-4 right-4 flex h-11 w-11 translate-y-2 items-center justify-center rounded-(--radius-md) bg-surface text-foreground opacity-0 transition-[opacity,transform] duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100 group-has-[:focus-visible]:translate-y-0 group-has-[:focus-visible]:opacity-100"
-          >
-            <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M4 12L12 4M5 4h7v7" />
-            </svg>
-          </span>
         </div>
 
         <p className={cn("flex flex-wrap items-baseline gap-x-4 gap-y-1 font-mono text-xs text-muted", cfg.eyebrow)}>
@@ -80,7 +71,7 @@ export function ProjectShowcase({ project, number, layout = "left", className }:
           <span>{year}</span>
         </p>
 
-        <h3 className={cn("font-display leading-[1.05] text-foreground", cfg.titleSize, cfg.title)}>
+        <h3 className={cn("font-display text-foreground", cfg.titleSize, "leading-[1.05]", cfg.title)}>
           <Link
             href={href}
             className="focus-visible:outline-none after:absolute after:inset-0 after:rounded-(--radius-lg) after:content-[''] focus-visible:after:outline-2 focus-visible:after:outline-offset-8 focus-visible:after:outline-accent"
