@@ -17,8 +17,8 @@ export function ProcessStep({ step, className }: ProcessStepProps) {
 
         <p className="mt-3 max-w-[32ch] text-sm text-muted">{step.description}</p>
 
-        <p className="mt-6 font-mono text-[0.7rem] text-muted">Deliverables</p>
-        <ul className="mt-2 flex flex-col gap-1.5">
+        <p className="mt-6 font-mono text-[0.7rem] text-muted">Yang Anda terima</p>
+        <ul role="list" className="mt-2 flex flex-col gap-1.5">
           {step.deliverables.map((item) => (
             <li key={item} className="text-sm text-foreground">
               {item}
